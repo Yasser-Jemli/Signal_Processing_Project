@@ -21,6 +21,18 @@ import scipy.io.wavfile as wav
 # status = sd.wait()  # Wait until file is done playing
 # print('fin recording')
 
-(fs,x) = wav.read("/home/yasser_jemli/Signal_Processing_Project/_recording_Project/output.wav")
-sd.play(x, fs) 
+# (fs,x) = wav.read("/home/yasser_jemli/Signal_Processing_Project/_recording_Project/output.wav")
+# sd.play(20*x, fs) 
+# sd.wait()
 
+(fs,x) = wav.read("/home/yasser_jemli/Signal_Processing_Project/_recording_Project/SA1.WAV")
+sd.play(20*x, fs)
+
+time=np.arange(0,len(x))/fs; # Time vector on x-axis
+plt.figure()
+plt.subplot(311)
+plt.plot(time, x, label="signal wav")
+plt.title('signal wav')
+plt.xlabel("Time [s]")
+plt.ylabel("Amplitude")
+plt.show()
