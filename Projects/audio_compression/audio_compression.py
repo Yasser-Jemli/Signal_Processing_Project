@@ -18,9 +18,12 @@ def quantize(signal, num_bits):
     return quantized_signal.astype(np.int16)
 
 def huffman_coding(data):
+    # Implement Huffman coding
     frequencies = defaultdict(int)
     for symbol in data:
-        frequencies[symbol] += 1
+        # Convert NumPy array to a hashable type (e.g., tuple)
+        symbol_key = tuple(symbol)
+        frequencies[symbol_key] += 1
 
     heap = [[weight, [symbol, ""]] for symbol, weight in frequencies.items()]
     heapq.heapify(heap)
@@ -37,7 +40,8 @@ def huffman_coding(data):
     return huffman_dict
 
 def compress_audio(data, huffman_dict):
-    compressed_data = ''.join([huffman_dict[symbol] for symbol in data])
+    # Compress the data using Huffman coding
+    compressed_data = ''.join([huffman_dict[tuple(symbol)] for symbol in data])
     return compressed_data
 
 def decompress_audio(compressed_data, huffman_dict):
@@ -104,6 +108,6 @@ def main(file_path, num_bits):
     save_audio_file("compressed_audio.wav", rate, decompressed_data)
 
 if __name__ == "__main__":
-    audio_file_path = "/home/yasser_jemli/Signal_Processing_Project/Projects/audio_compression/SA1.WAV"
+    audio_file_path = "/home/yasser_jemli/Signal_Processing_Project/Projects/audio_compression/sa2.wav"
     num_bits = 4
     main(audio_file_path, num_bits)
