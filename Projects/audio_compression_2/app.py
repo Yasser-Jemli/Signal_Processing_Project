@@ -114,14 +114,31 @@ for n in range (0,2):
     elif n==1:
         fft_dis(outname)
 
+
 def save_fft_plot(fname, output_filename):
     sampFreq, snd = wavfile.read(fname)
-    # ... (Rest of your FFT processing code remains unchanged)
+
+    snd = snd / (2.**15)
+    n = len(snd)
+    p = fft(snd)
+    nUniquePts = int(ceil((n+1)/2.0))
+    p = p[0:nUniquePts]
+    p = abs(p)
+    p = p / float(n)
+    p = p**2
+
+    if n % 2 > 0:
+        p[1:len(p)] = p[1:len(p)] * 2
+    else:
+        p[1:len(p) -1] = p[1:len(p) - 1] * 2
+
+    freqArray = arange(0, nUniquePts, 1.0) * (sampFreq / n)
 
     plt.plot(freqArray/1000, 10*log10(p), color='k')
     plt.xlabel('Channel_Frequency (kHz)')
     plt.ylabel('Channel_Power (dB)')
-    plt.savefig(output_filename)  # Save the plot instead of showing it
+    plt.savefig(output_filename)
+    plt.close()  # Close the plot to release resources
 
 def generate_html_report():
     save_fft_plot(fname, 'original_signal.png')
@@ -133,11 +150,11 @@ def generate_html_report():
     # Markdown cell for signal details
     text = """
     # Signal Details
-    - Original Signal
-    ![Original Signal](original_signal.png)
+    <h2>Original Signal</h2>
+    <img src="original_signal.png" alt="Original Signal" style="width:50%">
     
-    - Filtered Signal
-    ![Filtered Signal](filtered_signal.png)
+    <h2>Filtered Signal</h2>
+    <img src="filtered_signal.png" alt="Filtered Signal" style="width:50%">
     
     Add more signal details here...
     """
@@ -145,11 +162,16 @@ def generate_html_report():
 
     # Convert to HTML
     html_exporter = HTMLExporter()
-    (body, resources) = html_exporter.from_notebook_node(nb)
-    
+    (body, resources) = html_exporter.from_notebook_node(nb, resources={'output_files_dir': 'output_images'})
+
     # Write HTML report to a file
     with open('signal_report.html', 'w') as report_file:
         report_file.write(body)
+
+    # Move generated images to the output_images directory
+    image_files = resources.get('outputs', {}).get('text/html', [])
+    for file in image_files:
+        os.rename(file, os.path.join('output_images', os.path.basename(file)))
 
 # Run the functions to generate the HTML report
 generate_html_report()
