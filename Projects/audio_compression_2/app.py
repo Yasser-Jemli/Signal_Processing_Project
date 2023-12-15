@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Mar 31 00:19:15 2019
+# Done By Yasser JEMLI 15 Dev 12:41
 
-@author: Narayanan Krishna
-"""
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,11 +7,12 @@ import wave
 import sys
 import math
 import contextlib
-from pylab import*
 from scipy.io import wavfile
-import pyaudio
+from pylab import *
+import nbformat
+from nbconvert import HTMLExporter
 
-fname = '/home/celadodc-rswl.com/yasser.jamli/Signal_Processing_Project/Projects/audio_compression_2/sa2.wav'
+fname = '/home/celadodc-rswl.com/yasser.jamli/Signal_Processing_Project/Projects/audio_compression_2/babble_16.wav'
 outname = 'filtered.wav'
 
 cutOffFrequency = 1000.0
@@ -116,3 +113,43 @@ for n in range (0,2):
         fft_dis(fname)
     elif n==1:
         fft_dis(outname)
+
+def save_fft_plot(fname, output_filename):
+    sampFreq, snd = wavfile.read(fname)
+    # ... (Rest of your FFT processing code remains unchanged)
+
+    plt.plot(freqArray/1000, 10*log10(p), color='k')
+    plt.xlabel('Channel_Frequency (kHz)')
+    plt.ylabel('Channel_Power (dB)')
+    plt.savefig(output_filename)  # Save the plot instead of showing it
+
+def generate_html_report():
+    save_fft_plot(fname, 'original_signal.png')
+    save_fft_plot(outname, 'filtered_signal.png')
+
+    # Create an HTML report using nbconvert
+    nb = nbformat.v4.new_notebook()
+
+    # Markdown cell for signal details
+    text = """
+    # Signal Details
+    - Original Signal
+    ![Original Signal](original_signal.png)
+    
+    - Filtered Signal
+    ![Filtered Signal](filtered_signal.png)
+    
+    Add more signal details here...
+    """
+    nb['cells'] = [nbformat.v4.new_markdown_cell(text)]
+
+    # Convert to HTML
+    html_exporter = HTMLExporter()
+    (body, resources) = html_exporter.from_notebook_node(nb)
+    
+    # Write HTML report to a file
+    with open('signal_report.html', 'w') as report_file:
+        report_file.write(body)
+
+# Run the functions to generate the HTML report
+generate_html_report()
