@@ -108,6 +108,6 @@ def main(file_path, num_bits):
     save_audio_file("compressed_audio.wav", rate, decompressed_data)
 
 if __name__ == "__main__":
-    audio_file_path = "/home/yasser_jemli/Signal_Processing_Project/Projects/audio_compression/sa2.wav"
+    audio_file_path = "/home/celadodc-rswl.com/yasser.jamli/Signal_Processing_Project/Projects/audio_compression/sa2.wav"
     num_bits = 4
     main(audio_file_path, num_bits)
