@@ -8,7 +8,8 @@ This repository contains code and resources for a signal processing project aime
 
 
 ## Getting Started
-[Provide instructions on how to get the project up and running, including any dependencies, installation steps, and usage guidelines.]
+in this repor you will find a lot of usefull ressources about signal processing techniques and topics , also we will have a review and code review of signal processing book 
+Noting that the repo is still under construction and may need same fixes and correction so feel free to raise an issue and thanks in advance 
 
 ## Review of "Book Title"
 As part of this project, I found the book *Book Title* by [Author Name] to be an invaluable resource. This book delves deep into [mention specific topics or concepts covered in the book relevant to the project]. The clear explanations and practical examples provided in the book greatly contributed to my understanding and implementation of signal processing techniques for this project.
