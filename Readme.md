@@ -4,8 +4,8 @@
 This repository contains code and resources for a signal processing project aimed to get you started with signal processing topics and techniques.
 
 ## Features
-- [List key features or functionalities of the project]
-- [Mention any notable algorithms or techniques used]
+- Audio Processing , MFCC , GMM , CNN , Speechreconizition , Audo _ compression 
+
 
 ## Getting Started
 [Provide instructions on how to get the project up and running, including any dependencies, installation steps, and usage guidelines.]
@@ -23,5 +23,5 @@ This project is open-source and distributed under the [License Type] license. Fe
 Contributions are welcome! If you'd like to contribute to this project, please follow the guidelines outlined in the [CONTRIBUTING](link-to-contributing-guidelines) file.
 
 ## Acknowledgments
-[Optionally, acknowledge any individuals, organizations, or resources that were instrumental in the development of this project.]
-
+to Mr . Youssef Zouhir for His support during my academic couse of signal processing in ESPRIT
+to Actia engineering seervice for providing all the  required tools for successing this module 
