@@ -8,7 +8,7 @@ This repository contains code and resources for a signal processing project aime
 
 
 ## Getting Started
-in this repor you will find a lot of usefull ressources about signal processing techniques and topics , also we will have a review and code review of signal processing book 
+in this repo you will find a lot of usefull ressources about signal processing techniques and topics , also we will have a review and code review of signal processing book 
 Noting that the repo is still under construction and may need same fixes and correction so feel free to raise an issue and thanks in advance 
 
 ## Review of "Hands-on Signal Analysis with Python" & "Simulation with Python"
